@@ -24,4 +24,5 @@ require("kvim.loader").load {
 	"@lang/cpp",
 	"@lang/json",
 	"@lang/yaml",
+	"@lang/_emmet",
 }
