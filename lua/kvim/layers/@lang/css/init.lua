@@ -1,8 +1,7 @@
 local function load(layers)
 	if layers.treesitter then
-		table.insert(layers.treesitter.parsers, "json")
-		table.insert(layers.treesitter.parsers, "jsonc")
-		table.insert(layers.treesitter.parsers, "json5")
+		table.insert(layers.treesitter.parsers, "css")
+		table.insert(layers.treesitter.parsers, "scss")
 	end
 
 	if layers.lsp then
