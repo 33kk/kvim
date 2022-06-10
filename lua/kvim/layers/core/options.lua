@@ -72,7 +72,6 @@ return function(layers)
 		loaded_netrw = 1,
 		loaded_netrwPlugin = 1,
 		loaded_netrwSettings = 1,
-		loaded_netrwFileHandlers = 1,
-		loaded_tutor_mode_plugin = 1
+		loaded_netrwFileHandlers = 1
 	}, "g")
 end
