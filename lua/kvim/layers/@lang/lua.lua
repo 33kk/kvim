@@ -1,17 +1,17 @@
-local function load(layers)
+local function load(layers, defs)
 	local runtime_path = vim.split(package.path, ";")
 	table.insert(runtime_path, "lua/?.lua")
 	table.insert(runtime_path, "lua/?/init.lua")
 
-	if layers.treesitter then
+	if defs.treesitter then
 		table.insert(layers.treesitter.parsers, "lua")
 	end
 
-	if layers.nls then
+	if defs.nls then
 		table.insert(layers.nls.sources, require("null-ls").builtins.formatting.stylua)
 	end
 
-	if layers.lsp then
+	if false and defs.lsp then
 		layers.lsp.configs["sumneko_lua"] = {
 			settings = {
 				Lua = {

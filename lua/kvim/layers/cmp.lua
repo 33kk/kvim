@@ -36,13 +36,13 @@ local codicons = {
 }
 
 local sources = {
+	{ name = "buffer", label = "Buffer" },
+	{ name = "spell", label = "Spell" },
+	{ name = "luasnip", label = "LuaSnip" },
+	{ name = "nvim_lua", label = "Nvim" },
+	{ name = "nvim_lsp", label = "LSP" },
 	{ name = "calc", label = "Calc" },
 	{ name = "path", label = "Path" },
-	{ name = "nvim_lsp", label = "LSP" },
-	{ name = "nvim_lua", label = "Nvim" },
-	{ name = "luasnip", label = "LuaSnip" },
-	{ name = "spell", label = "Spell" },
-	{ name = "buffer", label = "Buffer" },
 }
 
 local sources_keyed = {}
@@ -68,11 +68,11 @@ local function plugins(use)
 	}
 end
 
-local function load(layers)
+local function load(layers, defs)
 	local cmp = require("cmp")
 	local luasnip = require("luasnip")
 
-	if layers.lsp then
+	if defs.lsp then
 		layers.lsp.capabilities = require('cmp_nvim_lsp').update_capabilities(layers.lsp.capabilities)
 	end
 
@@ -99,8 +99,8 @@ local function load(layers)
 			["<Tab>"] = cmp.mapping(function(fallback)
 				if cmp.visible() then
 					cmp.select_next_item()
-				elseif luasnip.expand_or_jumpable() then
-					feedkey("<Plug>luasnip-expand-or-jump", "")
+				-- elseif luasnip.expand_or_jumpable() then
+				-- 	feedkey("<Plug>luasnip-expand-or-jump", "")
 				elseif has_words_before() then
 					cmp.complete()
 				else
@@ -113,8 +113,8 @@ local function load(layers)
 			["<S-Tab>"] = cmp.mapping(function(fallback)
 				if cmp and cmp.visible() then
 					cmp.select_prev_item()
-				elseif luasnip.jumpable(-1) then
-					feedkey("<Plug>luasnip-jump-prev", "")
+				-- elseif luasnip.jumpable(-1) then
+				-- 	feedkey("<Plug>luasnip-jump-prev", "")
 				else
 					fallback()
 				end
@@ -145,7 +145,20 @@ local function load(layers)
 				return vim_item
 			end
 		},
-		sources = cmp.config.sources(sources)
+		sources = cmp.config.sources(sources),
+
+		sorting = {
+			comparators = {
+				cmp.config.compare.exact,
+				cmp.config.compare.sort_text,
+				cmp.config.compare.offset,
+				cmp.config.compare.score,
+				cmp.config.compare.recently_used,
+				cmp.config.compare.kind,
+				cmp.config.compare.order,
+				cmp.config.compare.length,
+			},
+		},
 	})
 
 	-- Set configuration for specific filetype.

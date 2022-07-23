@@ -6,7 +6,7 @@ local function plugins(use)
 	use { "j-hui/fidget.nvim" }
 end
 
-local function load(layers)
+local function load(layers, defs)
 	vim.cmd("colorscheme kkDark")
 
 	require("indent_blankline").setup {
@@ -19,7 +19,7 @@ local function load(layers)
 	require("kvim.layers.ui.signs")
 	require("kvim.layers.ui.statusline")
 
-	if layers.lsp then
+	if defs.lsp then
 		require("fidget").setup {
 			text = {
 				spinner = "dots"

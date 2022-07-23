@@ -20,6 +20,8 @@ return function(layers)
 		signcolumn = "yes",
 		colorcolumn = "80",
 
+		grepprg = "rg --vimgrep",
+
 		showmode = false,
 		shortmess = { append = "c" },
 
@@ -39,8 +41,10 @@ return function(layers)
 		splitbelow = true,
 		splitright = true,
 
-		foldmethod = "syntax",
-		foldlevelstart = 9999,
+		foldcolumn = "1",
+		foldenable = true,
+		foldlevel = 9999,
+		foldlevelstart = -1,
 
 		guifont = "JetBrainsMono Nerd Font Mono:h14",
 		termguicolors = utils.has("termguicolors"), -- is the check even necessary?

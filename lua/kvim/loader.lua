@@ -31,19 +31,19 @@ end
 local function run_hooks()
 	for _, layer in ipairs(resolve_order(M.layer_definitions, "preload_after")) do
 		if layer.preload then
-			layer.preload(M.layer_data)
+			layer.preload(M.layer_data, M.layer_definitions)
 		end
 	end
 
 	for _, layer in ipairs(resolve_order(M.layer_definitions, "load_after")) do
 		if layer.load then
-			layer.load(M.layer_data)
+			layer.load(M.layer_data, M.layer_definitions)
 		end
 	end
 
 	for _, layer in ipairs(resolve_order(M.layer_definitions, "postload_after")) do
 		if layer.postload then
-			layer.postload(M.layer_data)
+			layer.postload(M.layer_data, M.layer_definitions)
 		end
 	end
 end

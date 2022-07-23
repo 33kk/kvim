@@ -5,7 +5,7 @@ end
 
 local function preload(layers)
 	require("nvim-lsp-installer").setup {
-		automatic_installation = true,
+		-- automatic_installation = true,
 	}
 
 	layers.lsp = {
